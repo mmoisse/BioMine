@@ -256,7 +256,11 @@ class mafvariant(variant):
 		if self.positionPeptide:
 			hgvsp += str(self.positionPeptide)
 		if self.alternatePeptide:
-			hgvsp += str(self.alternatePeptide)
+			if self.positionPeptide and self.alternatePeptide == self.referencePeptide:
+				hgvsp += str('=')
+			else:
+				hgvsp += str(self.alternatePeptide)
+
 		return hgvsp
 	def splitHGVSp( self , hgvsp ):
 ##		print "biomine::variant::mafvariant::splitHGVSp - "
